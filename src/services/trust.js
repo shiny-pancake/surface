@@ -1,4 +1,4 @@
-import { Graph } from "graph-data-structure";
+import { Graph } from 'graph-data-structure';
 
 class trustGraph {
   constructor(nodes) {
@@ -6,7 +6,7 @@ class trustGraph {
     this.nodes = nodes;
     this.pairs = this.generatePairs(this.nodes);
 
-    this.addNodes()
+    this.addNodes();
   }
 
   *addNodes() {
@@ -16,8 +16,8 @@ class trustGraph {
   }
 
   *generatePairs() {
-    return this.nodes.flatMap(
-      (v, i) => this.nodes.slice(i+1).map( w => (v, w))
+    return this.nodes.flatMap((v, i) =>
+      this.nodes.slice(i + 1).map((w) => (v, w)),
     );
   }
 }
