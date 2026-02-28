@@ -33,13 +33,15 @@ const gameVisible = ref(false);
   --clr-white-1: #fff;
   --clr-white-2: #eee;
 
-  --clr-text: var(--clr-black-1);
-  --clr-bg: var(--clr-white-2);
+  --clr-text-1: var(--clr-black-1);
+  --clr-text-2: var(--clr-black-2);
+  --clr-bg-1: var(--clr-white-2);
+  --clr-bg-2: var(--clr-white-1);
 }
 
 ::selection {
-  background-color: var(--clr-text);
-  color: var(--clr-bg);
+  background-color: var(--clr-text-1);
+  color: var(--clr-bg-1);
 }
 
 /* Do not use !important inside layers */
@@ -48,8 +50,8 @@ const gameVisible = ref(false);
 @layer base {
   body {
     font-family: var(--font-primary);
-    color: var(--clr-text);
-    background-color: var(--clr-bg);
+    color: var(--clr-text-1);
+    background-color: var(--clr-bg-1);
   }
 }
 
@@ -76,18 +78,18 @@ const gameVisible = ref(false);
         padding: 0.75rem 1.5rem;
         font-size: 1rem;
         font-weight: 500;
-        color: var(--clr-bg);
-        background-color: var(--clr-text);
+        color: var(--clr-bg-1);
+        background-color: var(--clr-text-1);
         border: none;
         border-radius: 0.5rem;
-        outline: var(--clr-text) solid 2px;
+        outline: var(--clr-text-1) solid 2px;
         cursor: pointer;
         transition: background-color 0.3s ease;
 
         &:hover,
         &:focus {
-          background-color: var(--clr-bg);
-          color: var(--clr-text);
+          background-color: var(--clr-bg-1);
+          color: var(--clr-text-1);
         }
       }
     }
