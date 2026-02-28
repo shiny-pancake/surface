@@ -1,15 +1,25 @@
 <script setup lang="ts">
+import Welcome from './components/Welcome.vue';
+
 import { reactive, computed } from 'vue';
 
-import { TrustGraph } from './services/trust.js';
-import { Round, Trade, Bundle, Node } from './services/simulation.js';
+import { TrustGraph } from './services/trust';
+import { Round, Trade, Bundle, Node } from './services/simulation';
 
-const GameState = reactive({
+const GameState: any = reactive({
   merchantCount: 4,
   roundCap: 3,
+  graph: null,
 });
 
-const publicTrust = computed(() => {});
+const publicTrust = computed(() => {
+  return (
+    GameState.graph?.nodes
+      .map((node: Node) => node.trust)
+      .reduce((a: number, b: number) => a + b, 0) /
+      GameState.graph?.nodes.length || 0
+  );
+});
 
 function startGame() {
   const nodes = [];
@@ -18,11 +28,12 @@ function startGame() {
   }
 
   const graph = new TrustGraph(nodes);
+  GameState.graph = graph;
 }
 </script>
 
 <template>
-  <h1>Test</h1>
+  <Welcome />
 </template>
 
 <style src="./style/reset.css"></style>
