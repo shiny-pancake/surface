@@ -1,23 +1,23 @@
 import { Graph } from 'graph-data-structure';
 
-class trustGraph {
-  constructor(nodes) {
+class TrustGraph {
+  constructor(merchants) {
     this.graph = new Graph();
-    this.nodes = nodes;
-    this.pairs = this.generatePairs(this.nodes);
+    this.merchants = merchants;
+    this.pairs = this.generatePairs(this.merchants);
 
-    this.addNodes();
+    this.addMerchants();
   }
 
-  *addNodes() {
+  *addMerchants() {
     this.pairs.forEach((a, b) => {
       this.graph.addEdge(a, b);
     });
   }
 
   *generatePairs() {
-    return this.nodes.flatMap((v, i) =>
-      this.nodes.slice(i + 1).map((w) => (v, w)),
+    return this.merchants.flatMap((v, i) =>
+      this.merchants.slice(i + 1).map((w) => [v, w]),
     );
   }
 }

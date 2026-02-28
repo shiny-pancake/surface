@@ -37,7 +37,7 @@ class Bundle {
   }
 }
 
-class Node {
+class Merchant {
   constructor(name = '') {
     this.name = name;
     this.id = crypto.randomUUID();
