@@ -36,3 +36,10 @@ class Bundle {
     this.goodsNumber = goodsNumber;
   }
 }
+
+class Node {
+  constructor(name = '') {
+    this.name = name;
+    this.id = crypto.randomUUID();
+  }
+}
