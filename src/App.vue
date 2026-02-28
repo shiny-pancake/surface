@@ -52,4 +52,12 @@ function startGame() {
 
 /* Do not use !important inside layers */
 @layer reset, base, components, utilities;
+
+@layer base {
+  body {
+    font-family: var(--font-primary);
+    color: var(--clr-text);
+    background-color: var(--clr-bg);
+  }
+}
 </style>
