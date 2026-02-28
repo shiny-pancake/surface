@@ -25,4 +25,31 @@ function startGame() {
   <h1>Test</h1>
 </template>
 
-<style scoped></style>
+<style src="./style/reset.css"></style>
+<style>
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Stack+Sans+Notch:wght@200..700&display=swap');
+
+:root {
+  --font-primary:
+    'Stack Sans Notch', system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+  --clr-black-1: #121212;
+  --clr-black-2: #333;
+  --clr-white-1: #fff;
+  --clr-white-2: #eee;
+
+  --clr-text: var(--clr-black-1);
+  --clr-bg: var(--clr-white-2);
+}
+
+::selection {
+  background-color: var(--clr-text);
+  color: var(--clr-bg);
+}
+
+/* Do not use !important inside layers */
+@layer reset, base, components, utilities;
+</style>
