@@ -1,39 +1,20 @@
 <script setup lang="ts">
-import Welcome from './components/Welcome.vue';
+import Game from './components/Game.vue';
+import { ref } from 'vue';
 
-import { reactive, computed } from 'vue';
-
-import { TrustGraph } from './services/trust';
-import { Round, Trade, Bundle, Node } from './services/simulation';
-
-const GameState: any = reactive({
-  merchantCount: 4,
-  roundCap: 3,
-  graph: null,
-});
-
-const publicTrust = computed(() => {
-  return (
-    GameState.graph?.nodes
-      .map((node: Node) => node.trust)
-      .reduce((a: number, b: number) => a + b, 0) /
-      GameState.graph?.nodes.length || 0
-  );
-});
-
-function startGame() {
-  const nodes = [];
-  for (let i = 0; i < GameState.merchantCount; i++) {
-    nodes.push(new Node(`Merchant ${i + 1}`));
-  }
-
-  const graph = new TrustGraph(nodes);
-  GameState.graph = graph;
-}
+const gameVisible = ref(false);
 </script>
 
 <template>
-  <Welcome />
+  <section class="welcome" v-if="!gameVisible">
+    <h1>Welcome to Surface!</h1>
+    <div class="buttons">
+      <button type="button" @click="gameVisible = true">Start Game</button>
+      <button type="button">Help</button>
+    </div>
+  </section>
+
+  <Game v-model:visible="gameVisible" />
 </template>
 
 <style src="./style/reset.css"></style>
@@ -69,6 +50,47 @@ function startGame() {
     font-family: var(--font-primary);
     color: var(--clr-text);
     background-color: var(--clr-bg);
+  }
+}
+
+@layer components {
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+
+    min-height: 100vh;
+
+    & h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+    }
+
+    & .buttons {
+      display: flex;
+      gap: 1rem;
+
+      & button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--clr-bg);
+        background-color: var(--clr-text);
+        border: none;
+        border-radius: 0.5rem;
+        outline: var(--clr-text) solid 2px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        &:hover,
+        &:focus {
+          background-color: var(--clr-bg);
+          color: var(--clr-text);
+        }
+      }
+    }
   }
 }
 </style>
